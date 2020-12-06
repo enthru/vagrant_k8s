@@ -10,16 +10,17 @@ mkdir /home/vagrant/.kube
 cp /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 chown -R vagrant:vagrant /home/vagrant/.kube
 
-# Deploy flannel network
-echo "[TASK 3] Deploy flannel network"
-su - vagrant -c "kubectl create -f /vagrant/kube-flannel.yaml"
-
 # Generate Cluster join command
 echo "[TASK 4] Generate and save cluster join command to /joincluster.sh"
 kubeadm token create --print-join-command > /joincluster.sh
 
 echo "[TASK 5] Deploy other services"
 yum -y install unzip git
+cd /vagrant
+git clone https://github.com/enthru/vagrant_k8s.git
+# Deploy flannel network
+su - vagrant -c "kubectl create -f /vagrant/vagrant_k8s/kube-flannel.yaml"
+cd /home/vagrant
 git clone https://github.com/enthru/k8s_test.git
 cd k8s_test
 
