@@ -19,7 +19,7 @@ yum -y install unzip git
 cd /vagrant
 git clone https://github.com/enthru/vagrant_k8s.git
 # Deploy flannel network
-su - vagrant -c "kubectl create -f /vagrant/vagrant_k8s/kube-flannel.yaml"
+su - vagrant -c "kubectl create -f /vagrant/vagrant_k8s/kube-flannel.yml"
 cd /home/vagrant
 git clone https://github.com/enthru/k8s_test.git
 cd k8s_test
