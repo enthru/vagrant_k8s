@@ -24,3 +24,9 @@ cd k8s_test
 su - vagrant -c "kubectl apply -f service/zookeeper-svc.yaml"
 su - vagrant -c "kubectl apply -f statefulset/zookeeper-statefulset.yaml"
 sleep 300
+su - vagrant -c "kubectl apply -f service/kafka-svc.yaml"
+su - vagrant -c "kubectl apply -f statefulset/kafka-statefulset.yaml"
+sleep 300
+kubectl run producer-app --image=enthru/producer:v1.2
+kubectl run consumer-app --image=enthru/consumer:v1.0
+
